@@ -4,12 +4,20 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '7.1.2'
     id 'application'
     id 'jacoco'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
 }
 
 mainClassName = 'seedu.address.Main'
 
-sourceCompatibility = JavaVersion.VERSION_11
-targetCompatibility = JavaVersion.VERSION_11
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
+}
+javafx {
+  version = "11.0.2"
+  modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.graphics' ]
+}
 
 repositories {
     mavenCentral()
@@ -42,20 +50,6 @@ task coverage(type: JacocoReport) {
 
 dependencies {
     String jUnitVersion = '5.4.0'
-    String javaFxVersion = '11'
-
-    implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
-    implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
-    implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'linux'
-    implementation group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: 'win'
-    implementation group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: 'mac'
-    implementation group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: 'linux'
-    implementation group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: 'win'
-    implementation group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: 'mac'
-    implementation group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: 'linux'
-    implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'win'
-    implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'mac'
-    implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'linux'
 
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.7.0'
     implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.7.4'
