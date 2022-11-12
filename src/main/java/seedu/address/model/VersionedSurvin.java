@@ -68,9 +68,7 @@ public class VersionedSurvin extends Survin {
     }
 
     private void removeUndoneStates() {
-        for (int i = currentStatePointer + 1; i < survinStateList.size(); ++i) {
-            survinStateList.remove(i);
-        }
+        survinStateList.subList(currentStatePointer + 1, survinStateList.size()).clear();
     }
 
 }
